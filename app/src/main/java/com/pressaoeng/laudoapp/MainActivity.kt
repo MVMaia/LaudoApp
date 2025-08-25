@@ -1,6 +1,5 @@
 package com.pressaoeng.laudoapp
 
-import android.R.attr.text
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,13 +8,10 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.*
-import androidx.compose.material.icons.Icons
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -65,61 +61,136 @@ class MainActivity : ComponentActivity() {
                                     .fillMaxHeight(),
                                 contentAlignment = Alignment.Center
                             ) {
-                                //centerBox
                                 Column(
                                     modifier = Modifier
-                                        .width(325.dp)
-                                        .height(700.dp)
+                                        .fillMaxWidth(0.85f)
+                                        .fillMaxHeight(0.9f)
                                         .background(Color.White, shape = RoundedCornerShape(16.dp))
-                                        .border(2.dp, Color.Black, shape = RoundedCornerShape(16.dp)),
-                                ) {
+                                        .border(width = 2.dp, Color.Black, shape = RoundedCornerShape(16.dp)),
+                                ){
                                     Row(
                                         modifier = Modifier
-                                            .width(325.dp)
-                                            .weight(1f)
-                                            .background(Color.Blue),
+                                            .fillMaxWidth()
+                                            .weight(1f),
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        horizontalArrangement = Arrangement.Center,
                                     ){
-                                        Text("OLOCOS TEM SOMETHING DIGITADO HERE")
-                                    }
+                                        Column(
+                                            modifier = Modifier
+                                                .weight(1f)
+                                                .fillMaxHeight(),
+                                            verticalArrangement = Arrangement.Center,
+                                            horizontalAlignment = Alignment.CenterHorizontally,
+                                        ) {
+                                            Button(
+                                                onClick = {},
+                                                modifier = Modifier
+                                                    .fillMaxWidth(0.85f)
+                                                    .fillMaxHeight(0.85f),
+                                                shape = RoundedCornerShape(18.dp),
+                                                colors = ButtonDefaults.buttonColors(
+                                                    containerColor = Color(0xFF37529F),
+                                                    contentColor = Color.White,
+                                                )
+                                            ){
+                                                Row(
+                                                    modifier = Modifier
+                                                        .fillMaxWidth()
+                                                        .fillMaxHeight(),
+                                                    horizontalArrangement = Arrangement.Start,
+                                                    verticalAlignment = Alignment.Top,
+                                                ) {
+                                                    Text(
+                                                        text = "Agenda",
+                                                        fontWeight = FontWeight.Bold,
+                                                    )
+                                                }
+                                            }
+                                        }
 
-                                    Row(
-                                        modifier = Modifier
-                                            .width(325.dp)
-                                            .weight(1f)
-                                            .background(Color.Red),
-                                    ){
-                                        Text("OLOCOS TEM SOMETHING DIGITADO HERE")
-                                    }
-
-                                    Row(
-                                        modifier = Modifier
-                                            .width(325.dp)
-                                            .weight(1f)
-                                            .background(Color.Green),
-                                    ){
-                                        Text("OLOCOS TEM SOMETHING DIGITADO HERE")
+                                        Column(
+                                            modifier = Modifier
+                                                .weight(1f)
+                                                .fillMaxHeight(),
+                                            verticalArrangement = Arrangement.Center,
+                                            horizontalAlignment = Alignment.CenterHorizontally,
+                                        ) {
+                                            Button(
+                                                onClick = {},
+                                                modifier = Modifier
+                                                    .fillMaxWidth(0.85f)
+                                                    .fillMaxHeight(0.85f),
+                                                shape = RoundedCornerShape(18.dp),
+                                                colors = ButtonDefaults.buttonColors(
+                                                    containerColor = Color(0xFF37529F),
+                                                    contentColor = Color.White,
+                                                ),
+                                            ){
+                                                Row(
+                                                    modifier = Modifier
+                                                        .fillMaxWidth()
+                                                        .fillMaxHeight(),
+                                                    horizontalArrangement = Arrangement.Start,
+                                                    verticalAlignment = Alignment.Top,
+                                                ) {
+                                                    Text(
+                                                        text = "Histórico",
+                                                        fontWeight = FontWeight.Bold,
+                                                    )
+                                                }
+                                            }
+                                        }
                                     }
 
                                     Row(
                                         modifier = Modifier
                                             .fillMaxWidth()
                                             .weight(1f),
-                                        horizontalArrangement = Arrangement.Center,
+                                            //.background(Color.Green),
                                         verticalAlignment = Alignment.CenterVertically,
+                                        horizontalArrangement = Arrangement.Center,
+                                    ){
+
+                                    }
+
+                                    Row(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .weight(1f),
+                                            //.background(Color.Blue),
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        horizontalArrangement = Arrangement.Center,
+                                    ){
+
+                                    }
+
+                                    Row(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .weight(1f),
+                                        verticalAlignment = Alignment.Bottom,
+                                        horizontalArrangement = Arrangement.Center,
                                     ){
                                         Button(
                                             onClick = {},
                                             modifier = Modifier
                                                 .fillMaxWidth()
-                                                .fillMaxHeight()
-                                                .padding(horizontal = 15.dp, vertical = 60.dp),
+                                                .fillMaxHeight(0.6f)
+                                                .padding(8.dp),
                                             shape = RoundedCornerShape(15.dp),
+                                            colors = ButtonDefaults.buttonColors(
+                                                containerColor = Color(0xFF37529F),
+                                                contentColor = Color.White,
+                                            )
                                         ) {
                                             Text(
-                                                text = "Butão"
+                                                text = "Gerar Laudo",
+                                                fontSize = 15.sp,
+                                                fontWeight = FontWeight.Bold,
                                             )
                                         }
                                     }
+
                                 }
                             }
                         }
@@ -131,10 +202,10 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
+/*@Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
         text = "tem algo escrito aqui",
         modifier = modifier
     )
-}
+}*/
