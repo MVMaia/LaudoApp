@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -61,8 +63,8 @@ fun TopBar(){
             painter = painterResource(id = R.drawable.pressaologowbg),
             contentDescription = "Logo",
             modifier = Modifier
-                .width(150.dp)
-                .height(150.dp),
+                .height(60.dp)
+                .aspectRatio(2.5f),
         )
     }
 }
@@ -128,5 +130,21 @@ fun CenterBox(){
             LaudoButton("Gerar Laudo",{}, Modifier.fillMaxWidth().fillMaxHeight(0.6f).padding(8.dp))
         }
 
+    }
+}
+
+@Composable
+fun OptionsMenu(){
+    Box(
+        modifier = Modifier
+            .width(200.dp)
+            .height(200.dp)
+            .background(Color.Black),
+        contentAlignment = Alignment.Center,
+    ){
+        Text(
+            text = "Something escrito here",
+            color = Color.White,
+        )
     }
 }
