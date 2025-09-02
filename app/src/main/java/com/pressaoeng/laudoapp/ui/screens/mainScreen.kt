@@ -18,6 +18,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,11 +28,16 @@ import androidx.compose.ui.unit.dp
 import com.pressaoeng.laudoapp.R
 import com.pressaoeng.laudoapp.ui.components.LaudoButton
 import com.pressaoeng.laudoapp.ui.components.MenuButton
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+
 
 
 
 @Composable
 fun MainBox(innerPadding: PaddingValues){
+    var showOptions by remember { mutableStateOf(false) }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -42,7 +49,20 @@ fun MainBox(innerPadding: PaddingValues){
         ) {
             //topbar
             TopBar()
-            MainContent()
+            MainContent( onGerarLaudoClick = { showOptions = true } )
+        }
+
+        if(showOptions){
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.Black.copy(alpha = 0.7f)),
+                contentAlignment = Alignment.Center,
+            ){
+                OptionsMenu(
+                    dismiss = { showOptions = false },
+                )
+            }
         }
     }
 }
@@ -70,21 +90,22 @@ fun TopBar(){
 }
 
 @Composable
-fun MainContent(){
+fun MainContent(onGerarLaudoClick: () -> Unit){
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight(),
         contentAlignment = Alignment.Center
     ) {
-        CenterBox()
+        CenterBox( onGerarLaudoClick = onGerarLaudoClick)
     }
 
 }
 
 
 @Composable
-fun CenterBox(){
+fun CenterBox( onGerarLaudoClick: () -> Unit){
+
     Column(
         modifier = Modifier
             .fillMaxWidth(0.85f)
@@ -127,24 +148,28 @@ fun CenterBox(){
             verticalAlignment = Alignment.Bottom,
             horizontalArrangement = Arrangement.Center,
         ){
-            LaudoButton("Gerar Laudo",{}, Modifier.fillMaxWidth().fillMaxHeight(0.6f).padding(8.dp))
+            LaudoButton("Gerar Laudo",onGerarLaudoClick, Modifier.fillMaxWidth().fillMaxHeight(0.6f).padding(8.dp))
         }
+
 
     }
 }
 
 @Composable
-fun OptionsMenu(){
+fun OptionsMenu( dismiss: () -> Unit ){
     Box(
         modifier = Modifier
-            .width(200.dp)
-            .height(200.dp)
-            .background(Color.Black),
+            .fillMaxWidth(0.8f)
+            .fillMaxHeight(0.75f)
+            .background(Color.White, shape = RoundedCornerShape(25.dp))
+            .border(width = 3.dp, Color.Black, shape = RoundedCornerShape(25.dp)),
         contentAlignment = Alignment.Center,
     ){
         Text(
             text = "Something escrito here",
-            color = Color.White,
+            color = Color.Black,
         )
+
+        LaudoButton("Fechar", dismiss, Modifier.fillMaxWidth().fillMaxHeight(0.6f).padding(8.dp))
     }
 }
